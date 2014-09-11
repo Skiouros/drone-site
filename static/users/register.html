@@ -1,0 +1,26 @@
+<div class="popup-wrapper mfp-prevent-close">
+	<div class="addForm ppp">
+        <h1>Register</h1>
+        <form action="/users" id="registerForm" method="post" accept-charset="utf-8">
+        <div style="display:none;">
+            <input type="hidden" name="_method" value="POST"/>
+        </div>
+        <span style="display:none" class="error"></span>
+		<div class="input text">
+            <label for="UserUsername">Username</label>
+            <input name="username" maxlength="15" type="text" id="UserUsername"/>
+        </div>
+        <div class="input password">
+            <label for="UserPassword">Password</label>
+            <input name="password" type="password" id="UserPassword"/>
+        </div>
+        <div class="input password">
+            <label for="UserConfirmPassword">Confirm Password</label>
+            <input name="password2" type="password" id="UserConfirmPassword"/>
+        </div>
+        <div class="submit">
+            <input  type="submit" value="Create Account"/>
+        </div>
+    </form>
+    <script src="/static/js/register.js"></script>
+</div></div>

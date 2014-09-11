@@ -1,0 +1,8 @@
+# Ignore evertrhing
+*
+
+# Except these
+!.gitignore
+!nginx.conf
+!mime.types
+!config.lua
