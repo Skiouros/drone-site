@@ -15,6 +15,15 @@ func (user *User) ValidatePassword(password string) error {
 	return bcrypt.CompareHashAndPassword([]byte(user.Pass), []byte(password))
 }
 
+func (user *User) ChangePass(newPass string) {
+	ctext, err := crypto.Crypt(newPass)
+	if err != nil {
+		log.Fatal(err)
+	}
+	user.Pass = string(ctext)
+	DbMap.Save(*user)
+}
+
 func GetUserByName(name string) (*User) {
 	var user User
 	DbMap.Where("name = ?", name).Find(&user)

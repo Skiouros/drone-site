@@ -75,8 +75,37 @@ func userLogout(w http.ResponseWriter, r *http.Request) {
 	session.Options.MaxAge = -1
 	session.Save(r, w)
 
+	http.Redirect(w, r, "/", http.StatusSeeOther)
+}
+
+func userInfo(w http.ResponseWriter, r *http.Request) {
 	msg := Message{}
-	msg.Content = "Logged out"
+	msg.Content = "here is ur info"
+	ServeJson(w, msg)
+}
+
+func userProfile(w http.ResponseWriter, r *http.Request) {
+	user := GetUser(r)
+	context := make(map[string]interface{})
+	context["user"] = user
+
+	serveTemplate(w, "profile.html", context)
+}
+
+func userChangePass(w http.ResponseWriter, r *http.Request) {
+	msg := Message{}
+	pass1, pass2 := r.FormValue("password"), r.FormValue("password2")
+	if (pass1 != pass2) || pass1 == "" {
+		msg.Errors = []string{ "Passwords don't match" }
+		ServeJson(w, msg)
+		return
+
+	}
+
+	user := GetUser(r)
+	user.ChangePass(pass1)
+
+	msg.Content = "OK"
 	ServeJson(w, msg)
 }
 
@@ -84,6 +113,9 @@ func init() {
 	server := server.GetServer()
 
 	server.Route("/users", userNew).Methods("POST")
+	server.Route("/users/password", userChangePass, authCookie).Methods("POST")
+	server.Route("/users", userInfo, authCookie).Methods("GET")
+	server.Route("/users/profile", userProfile, authCookie)
 	server.Route("/users/login", userLogin).Methods("POST")
 	server.Route("/users/logout", userLogout)
 }

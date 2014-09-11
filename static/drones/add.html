@@ -7,24 +7,20 @@
                 <strong>1)</strong>&nbsp;Click map to add pointer or search for a location
             </label>
 			<form id="searchForm2">
-                <input type="text" value="" placeholder="search location" name="location" />
-                <input type="submit" value="Search" class="search btn"  />
+                <input id="add_location" type="text" value="" placeholder="search location" name="location" />
+                <input id="add_submit" type="submit" value="Search" class="search btn"  />
 			</form>
 			<div style="width: 100%; height: 300px;" id="dragMap">
         </div>
     </div>
     <div class="icol">
-    	<form action="add.html" id="DroneAddForm" method="post" accept-charset="utf-8">
-            <div style="display:none;">
-                <input type="hidden" name="_method" value="POST"/>
-            </div>
-            <input type="hidden" name="data[Drone][lat]" class="lat" id="DroneLat"/>
-            <input type="hidden" name="data[Drone][lng]" class="lng" id="DroneLng"/>
+    	<form action="/videos" id="videoAddForm" method="post" accept-charset="utf-8">
+            <input type="hidden" name="pos" class="lat" id="DronePos"/>
             <div class="input text">
                 <label for="DroneVideo">
                     <strong>2)</strong>&nbsp;Youtube/Vimeo video URL
                 </label>
-                <input name="data[Drone][video]" type="text" id="DroneVideo"/>
+                <input name="video" type="text" id="DroneVideo"/>
             </div>
             <div class="submit">
                 <input  type="submit" value="Finish"/>
@@ -37,129 +33,6 @@
         </div>
 
 </div>
-<script type="text/javascript">
-/*
-	var dragmap 
-	var image = new google.maps.MarkerImage('/static/img/marker-featured.png', new google.maps.Size(25, 40), new google.maps.Point(0,0), new google.maps.Point(12, 45));
-	var markersArray = [];
-			
-	function initialize() {
-			var mapOptions = {
-				center: new google.maps.LatLng(53.764949, -2.686586),
-				mapTypeControl: false,
-				streetViewControl: false,
-				overviewMapControl: false,
-				zoom: 9
-			};
-			
-			dragmap = new google.maps.Map(document.getElementById("dragMap"), mapOptions);
-			
-			 google.maps.event.addListener(dragmap, "click", function(event)
-            {
-                placeMarker(event.latLng);
-                document.getElementById("DroneLat").value = event.latLng.lat();
-                document.getElementById("DroneLng").value = event.latLng.lng();
-            });
+<script src="/static/js/add_video.js"></script>
 
-	}
-	
-	function deleteOverlays() {
-            if (markersArray) {
-                for (i in markersArray) {
-                    markersArray[i].setMap(null);
-                }
-            markersArray.length = 0;
-            }
-        }
-		
-		
-	function bindSearch()
-	{
-		
-		$('#searchForm2').bind('submit',function() { 
-					$address = $('input[name="location"]').val(); getLatLong($address); return false; 			
-				} )	
-	}
-	
-	function getLatLong(address) {
-
-		var geocoder2 = new google.maps.Geocoder();
-		var result = "";
-		geocoder2.geocode( { 'address': address }, function(results, status) {
-		
-	     if (status == google.maps.GeocoderStatus.OK) {
-			
-    	    $lat = results[0].geometry.location.lat();
-			$lng = results[0].geometry.location.lng();
-			result['lat'] = $lat;
-	        result['lng'] = $lng;
-			var myLatLng = new google.maps.LatLng($lat, $lng)
-			placeMarker(myLatLng);
-			dragmap.setCenter(myLatLng);
-			document.getElementById('DroneLat').value = $lat;
-			document.getElementById('DroneLng').value = $lng;
-		 } 
-		 else 
-		 {
-	         result = "Unable to find address: " + status;
-	     }
-    	
-    });
-}
-
-document.ready = function() { 
-		initialize();
-		bindSearch();
-
-		$('#DroneAddForm').bind('submit', function() { 
-			$errorMessage = '';
-			if($('#DroneLng').val() == '')
-			{
-					$errorMessage = $errorMessage + 'Please select a loction<br />';
-			}
-			if($('#DroneVideo').val() == '')
-			{
-					$errorMessage = $errorMessage + 'Please enter the video url<br />';
-			}
-			if($('#DroneEmailAddress').val() == '')
-			{
-					$errorMessage = $errorMessage + 'Please enter your email address<br />';
-			}
-		
-			if($errorMessage == '')
-			{							
-				$('.errorMessage').hide();
-			//	return true;
-			}
-			else
-			{
-				$('.errorMessage').html($errorMessage).show();
-				return false;
-			}
-			
-			var html = $.ajax({
-					type: "POST",
-					url: '/drones/ajax_save',
-					data: $('#DroneAddForm').serialize(),
-					async: false,
-					}).responseText;
-			
-			$details = eval('json = '+ html);		
-			if($details.status == 'error')
-			{
-				$('.errorMessage').html($details.message).show()
-			}
-			else
-			{
-				$('.addForm').hide();
-				$('.successMessage').html($details.message).show()
-			}
-				
-		return false;			
-		} );
-
- }
- */
-
-</script>
 <div class="successMessage" style="display:none"></div></div>

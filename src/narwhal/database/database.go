@@ -21,7 +21,10 @@ func init() {
 	DbMap = openDB()
 
 	DbMap.Table("users").CreateTable(&User{})
+	DbMap.Table("videos").CreateTable(&Video{})
+
 	gob.Register(&User{})
+	gob.Register(&Video{})
 }
 
 func openDB() (*gorm.DB) {

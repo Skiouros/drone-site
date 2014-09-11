@@ -9,7 +9,12 @@ func authCookie(w http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
 	user, err := session.Values["user"].(*database.User)
 
 	if err != true || user == nil {
-		http.Redirect(w, r, "/login", http.StatusTemporaryRedirect)
+		msg := map[string]interface{} {
+			"Errors": []interface{} {
+				"Not logged in",
+			},
+		}
+		ServeJson(w, msg)
 		return
 	}
 

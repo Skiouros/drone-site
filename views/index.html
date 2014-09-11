@@ -52,7 +52,12 @@
 
                                 <li class="hidden pilotAddLink"><a href="/static/users/login.html" class="addLink"><i>&#xf1c8;</i><span>Add Pilot</span></a></li>
 
+
+                {{ if .user }}
+                <li class="login"><a id="login" href="#" class="addLink" data-body-class="login"><i>&#xf007;</i><span>Profile</span></span></a></li>
+                {{ else }}
                 <li class="login"><a id="login" href="#" class="addLink" data-body-class="login"><i>&#xf007;</i><span>Login<span>/Register</span></span></a></li>
+                {{ end }}
                                 <li id="menu-trigger" class="hidden show-mobile menu-trigger">
                     <a href="#">
                         <i class="is-inactive">&#xf0c9;</i>
@@ -246,6 +251,7 @@
 
         <script src="https://maps.googleapis.com/maps/api/js"></script>
         <script src="/static/js/magnific.min.js"></script>
+        <script src="/static/js/markerclusterer.js"></script>
         <script src="/static/js/main.js"></script>
 
         <!--[if lt IE 9]><script src="/static/js/libs/jquery-extended-selectors.js"></script><![endif]-->

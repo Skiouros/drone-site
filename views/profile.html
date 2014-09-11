@@ -1,0 +1,27 @@
+<div class="popup-wrapper mfp-prevent-close">
+    <div class="addForm">
+        <h1 class="small-header">Hello {{ .user.Name  }}</h1>
+        <h6 class="sub-header">Change Password</h6>
+        <form action="/users/password" id="passwordForm" method="post" accept-charset="utf-8">
+            <div style="display:none;">
+                <input type="hidden" name="_method" value="POST">
+            </div>
+            <span style="display:none" class="error"></span>
+            <div class="input password">
+                <label for="UserPassword">Password</label>
+                <input name="password" type="password" id="UserPassword">
+            </div>
+            <div class="input password">
+                <label for="UserConfirmPassword">Confirm Password</label>
+                <input name="password2" type="password" id="UserConfirmPassword">
+            </div>
+            <div class="submit">
+                <input type="submit" value="Save">
+            </div>
+        </form>
+        <p class="register-link"><a href="/users/logout">Logout</a></p>
+    </div>
+    <script src="/static/js/profile.js"></script>
+</div>
+
+
