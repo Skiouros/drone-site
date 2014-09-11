@@ -1,16 +1,16 @@
 <div class="popup-wrapper mfp-prevent-close">
     <div class="addForm">
     <h1>Login</h1>
-        <form action="login.html" id="loginForm" method="post" accept-charset="utf-8">
+        <form action="/users/login" id="loginForm" method="post" accept-charset="utf-8">
             <div style="display:none;"><input type="hidden" name="_method" value="POST"/></div>
             <div style="display:none" class="error"></div>
             <div class="input text">
                 <label for="UserEmailAddress">Username</label>
-                <input name="data[User][email_address]" maxlength="150" type="text" id="UserEmailAddress"/>
+                <input name="username" maxlength="150" type="text" id="UserEmailAddress"/>
             </div>
             <div class="input password">
                 <label for="UserPassword">Password</label>
-                <input name="data[User][password]" type="password" id="UserPassword"/>
+                <input name="password" type="password" id="UserPassword"/>
             </div>
             <div class="submit">
                 <input  type="submit" value="Sign In"/>
@@ -18,12 +18,5 @@
         </form>
         <p class="register-link"><a id="register" href="#" class="fancypage action text-center trans">Register</a></p>
     </div>
-    <script type="text/javascript">
-        $("#register").magnificPopup({
-            items: {
-                src: "/static/users/register.html"
-            },
-            type: "ajax"
-        })
-    </script>
+    <script src="/static/js/login.js"></script>
 </div>

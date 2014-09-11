@@ -15,13 +15,14 @@ func (user *User) ValidatePassword(password string) error {
 	return bcrypt.CompareHashAndPassword([]byte(user.Pass), []byte(password))
 }
 
-func GetUser(key string, val string) (*User) {
+func GetUserByName(name string) (*User) {
 	var user User
-	// err := DbMap.SelectOne(&user, "select * from users where " + key + "= ?", val)
-	// if err != nil {
-	// 	log.Print(err)
-	// 	return nil
-	// }
+	DbMap.Where("name = ?", name).Find(&user)
+	if user.Name == "" {
+		println(user.Id)
+		log.Print("Couldn't find user")
+		return nil
+	}
 	return &user
 }
 
